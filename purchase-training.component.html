@@ -1,0 +1,220 @@
+<div class="container purchase-training-container">
+    <a href="{{data.trainingAndEducationLink}}"><span
+            class="icon icon-chevron-left"></span>{{data.i18n.trainingAndEducation}}</a>
+    <h2>Electrical Safety For The Qualified Worker</h2>
+    <hr class="head-hr">
+    <div class="row">
+        <div class="col-md-6">
+            <h5>{{data.i18n.learningObjective}}</h5>
+            <p>{{data.learningObjective}}</p>
+            <h5>{{data.i18n.courseAbstract}}</h5>
+            <p>{{data.courseAbstract}}</p>
+        </div>
+        <div class="col-md-6">
+            <p class="training-price"><b>${{data.price}}</b><span class="in-person">In-Person</span></p>
+            <div class="row location-date">
+                <div class="col-md-3"><span><svg width="8" height="14" viewBox="0 0 8 14" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M0 0.332031V4.33203H0.00666682L0 4.3387L2.66667 6.9987L0 9.66536L0.00666682 9.67203H0V13.6654H8V9.67203H7.99333L8 9.66536L5.33333 6.9987L8 4.3387L7.99333 4.33203H8V0.332031H0ZM6.66667 9.9987V12.332H1.33333V9.9987L4 7.33203L6.66667 9.9987ZM4 6.66536L1.33333 3.9987V1.66536H6.66667V3.9987L4 6.66536Z"
+                                fill="black" />
+                        </svg>
+                        3 Days, {{data.ceu}} CEUs</span></div>
+                <div class="col-md-9"><span class="glyphicon glyphicon-map-marker">Warrendale, PA & Houston, TX</span>
+                </div>
+            </div>
+            <div class="course-updated"><b>{{data.i18n.courseUpdated}}:</b> Jun 20, 2024</div>
+            <div class="row select-location-date">
+                <div class="col-md-6">
+                    <label>{{data.i18n.selectLocation}}</label>
+                    <select>
+                        <option selected>Warrendale, PA</option>
+                        <option>New York, USA</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label>{{data.i18n.selectDate}}</label>
+                    <select>
+                        <option selected>Sep 10-12, 2024 • 8:00AM CST</option>
+                        <option>Sep 14-15, 2024 • 8:00AM CST</option>
+                    </select>
+                </div>
+            </div>
+            <button class="register-now"
+                (click)="showRegisterOptions = !showRegisterOptions">{{data.i18n.registerNow}}<span
+                    class="icon icon-chevron-down"></span></button>
+            <div *ngIf="showRegisterOptions" class="register-options">
+                <p data-toggle="modal" data-target="#register-myself-modal"><svg width="16" height="16"
+                        viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M8 8C10.21 8 12 6.21 12 4C12 1.79 10.21 0 8 0C5.79 0 4 1.79 4 4C4 6.21 5.79 8 8 8ZM8 10C5.33 10 0 11.34 0 14V16H16V14C16 11.34 10.67 10 8 10Z"
+                            fill="white" />
+                    </svg>
+                    {{data.i18n.registerMyself}}</p><br>
+                <p data-toggle="modal" data-target="#register-someone-modal"><svg width="22" height="14"
+                        viewBox="0 0 22 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M15 6C16.66 6 17.99 4.66 17.99 3C17.99 1.34 16.66 0 15 0C13.34 0 12 1.34 12 3C12 4.66 13.34 6 15 6ZM7 6C8.66 6 9.99 4.66 9.99 3C9.99 1.34 8.66 0 7 0C5.34 0 4 1.34 4 3C4 4.66 5.34 6 7 6ZM7 8C4.67 8 0 9.17 0 11.5V14H14V11.5C14 9.17 9.33 8 7 8ZM15 8C14.71 8 14.38 8.02 14.03 8.05C15.19 8.89 16 10.02 16 11.5V14H22V11.5C22 9.17 17.33 8 15 8Z"
+                            fill="white" />
+                    </svg>
+                    {{data.i18n.registerSomeoneElse}}</p>
+            </div>
+        </div>
+    </div>
+    <!-- Register Myself Modal -->
+    <div id="register-myself-modal" class="register-myself-modal modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content text-left">
+                <div class="modal-header">
+                    <p>{{data.i18n.confirmRegistration}}<button type="button" class="close"
+                            data-dismiss="modal">✕</button></p>
+                    <hr>
+                </div>
+                <div class="modal-body">
+                    <p>{{data.i18n.pleaseConfirmYourDetailsBelow}}</p>
+                    <p><b>{{data.i18n.firstNameInputLabel}}: </b>Anika</p>
+                    <p><b>{{data.i18n.lastNameInputLabel}}: </b>Rosser</p>
+                    <p><b>{{data.i18n.emailAddress}}: </b>anika.rosser@email.com</p>
+                </div>
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <button type="button" data-toggle="modal" data-target="#registration-success-modal"
+                                class=" b-button b-button__tertiary b-button__tertiary--light color-change-blue">
+                                {{data.i18n.register}}
+                            </button>
+                        </div>
+                        <div class="col-md-6">
+                            <button type="button" data-toggle="modal" data-target="#confirm-registration-modal"
+                                class=" b-button b-button__primary b-button__primary--light color-change-white">
+                                {{data.i18n.edit}}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Confirm Registration Myself Modal -->
+    <div id="confirm-registration-modal" class="confirm-registration-modal modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content text-left">
+                <div class="modal-header">
+                    <p>{{data.i18n.confirmRegistration}}<button type="button" class="close"
+                            data-dismiss="modal">✕</button></p>
+                    <hr>
+                </div>
+                <div class="modal-body">
+                    <p>{{data.i18n.pleaseConfirmYourDetailsBelow}}</p>
+                    <form #selfRegistrationForm="ngForm">
+                        <p>
+                            <label for="firstname">{{data.i18n.firstNameInputLabel}}*</label>
+                            <input class="self-input" type="text" name="firstname" required ngModel>
+                        </p>
+                        <p>
+                            <label for="lastname">{{data.i18n.lastNameInputLabel}}*</label>
+                            <input class="self-input" type="text" name="lastname" required ngModel>
+                        </p>
+                        <p>
+                            <label for="email">{{data.i18n.emailAddress}}*</label>
+                            <input class="self-input" type="text" name="email" required ngModel>
+                        </p>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <div class="row">
+                        <button [disabled]="!selfRegistrationForm.valid" type="submit" data-toggle="modal"
+                            data-target="#registration-success-modal"
+                            class=" b-button b-button__tertiary b-button__tertiary--light color-change-blue">
+                            {{data.i18n.register}}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Register Someone Else Modal -->
+    <div id="register-someone-modal" class="register-someone-modal modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content text-left">
+                <div class="modal-header">
+                    <p>{{data.i18n.registerSomeoneElse}}<button type="button" class="close"
+                            data-dismiss="modal">✕</button></p>
+                    <hr>
+                </div>
+                <form [formGroup]="registerSomeoneElseForm">
+                    <div class="modal-body">
+                        <div formArrayName='person'>
+                            <div class="row" *ngFor="let member of membersList.controls; let i=index; let first=first"
+                                [formGroupName]="i">
+                                <p class="person-input-container">
+                                    <label for="firstname">{{data.i18n.firstNameInputLabel}}*</label>
+                                    <input class="person-input" type="text" name="firstname" required
+                                        formControlName='firstName'
+                                        (input)="member.controls.firstName.setValue(member.controls.firstName.value.toLowerCase())">
+                                </p>
+                                <p class="person-input-container">
+                                    <label for="lastname">{{data.i18n.lastNameInputLabel}}*</label>
+                                    <input class="person-input" type="text" name="lastname" required
+                                        formControlName='lasttName'
+                                        (input)="member.controls.lasttName.setValue(member.controls.lasttName.value.toLowerCase())">
+                                </p>
+                                <p class="person-input-container">
+                                    <label for="email">{{data.i18n.emailAddress}}*</label>
+                                    <input class="person-input" type="text" name="email" required
+                                        formControlName='memberEmailId'
+                                        (input)="member.controls.memberEmailId.setValue(member.controls.memberEmailId.value.toLowerCase())">
+                                </p>
+                                <span *ngIf="!first" class="remove-person"
+                                    (click)="deleteMember(i)">{{data.i18n.cartRemovelinktext}}</span>
+                            </div>
+                        </div>
+                        <a (click)="addMember()">{{data.i18n.addAnotherPerson}}</a>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <button [disabled]="!registerSomeoneElseForm.valid" type="submit" data-toggle="modal"
+                                    data-target="#registration-success-modal"
+                                    class=" b-button b-button__tertiary b-button__tertiary--light color-change-blue">
+                                    {{data.i18n.register}}
+                                </button>
+                            </div>
+                            <div class="col-md-3">
+                                <button type="button" data-dismiss="modal"
+                                    class=" b-button b-button__primary b-button__primary--light color-change-white cancel-registration">
+                                    {{data.i18n.cancelButtonLabel}}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Registration Success Modal -->
+    <div id="registration-success-modal" class="registration-success-modal modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content text-left">
+                <div class="modal-header">
+                    <p>{{data.i18n.purchaseTrainingSuccess}}<button type="button" class="close" (click)="reload()" data-dismiss="modal">✕</button>
+                    </p>
+                    <hr>
+                </div>
+                <div class="modal-body">
+                    <p>You’ve been registered for “Investigation Into Counterfeit Breakers”.<br>You will receive an
+                        email shortly at email@email.com with information on how to access the event. </p>
+                </div>
+                <div class="modal-footer">
+                    <div class="row">
+                        <button type="button"
+                            class=" b-button b-button__tertiary b-button__tertiary--light color-change-blue"
+                            data-dismiss="modal" (click)="reload()">
+                            {{data.i18n.okay}}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
