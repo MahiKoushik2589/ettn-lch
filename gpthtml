@@ -1,0 +1,57 @@
+<!-- Register Someone Else Modal -->
+<div id="register-someone-modal" class="register-someone-modal modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content text-left">
+            <div class="modal-header">
+                <p>{{data.i18n.registerSomeoneElse}}
+                    <button type="button" class="close" data-dismiss="modal">✕</button>
+                </p>
+                <hr>
+            </div>
+            <form [formGroup]="registerSomeoneElseForm" (ngSubmit)="registerUsers()">
+                <div class="modal-body">
+                    <div formArrayName="person">
+                        <div class="row" *ngFor="let member of membersList.controls; let i=index; let first=first"
+                            [formGroupName]="i">
+                            <p class="person-input-container">
+                                <label for="firstname">{{data.i18n.firstNameInputLabel}}*</label>
+                                <input class="person-input" type="text" name="firstname" required formControlName="firstName"
+                                    (input)="member.controls.firstName.setValue(member.controls.firstName.value.toLowerCase())">
+                            </p>
+                            <p class="person-input-container">
+                                <label for="lastname">{{data.i18n.lastNameInputLabel}}*</label>
+                                <input class="person-input" type="text" name="lastname" required formControlName="lasttName"
+                                    (input)="member.controls.lasttName.setValue(member.controls.lasttName.value.toLowerCase())">
+                            </p>
+                            <p class="person-input-container">
+                                <label for="email">{{data.i18n.emailAddress}}*</label>
+                                <input class="person-input" type="text" name="email" required formControlName="memberEmailId"
+                                    (input)="member.controls.memberEmailId.setValue(member.controls.memberEmailId.value.toLowerCase())">
+                            </p>
+                            <span *ngIf="!first" class="remove-person" (click)="deleteMember(i)">
+                                {{data.i18n.cartRemovelinktext}}
+                            </span>
+                        </div>
+                    </div>
+                    <a (click)="addMember()">{{data.i18n.addAnotherPerson}}</a>
+                </div>
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <button [disabled]="!registerSomeoneElseForm.valid" type="submit"
+                                class="b-button b-button__tertiary b-button__tertiary--light color-change-blue">
+                                {{data.i18n.register}}
+                            </button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" data-dismiss="modal"
+                                class="b-button b-button__primary b-button__primary--light color-change-white cancel-registration">
+                                {{data.i18n.cancelButtonLabel}}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
