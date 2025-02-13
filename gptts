@@ -10,16 +10,26 @@ export class PurchaseTrainingComponent implements OnInit {
   data: any;
   showRegisterOptions = false;
   registerSomeoneElseForm: FormGroup;
+  selfRegistrationForm: FormGroup; // New form for self-registration
 
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    // Initialize form for registering someone else
     this.registerSomeoneElseForm = this.fb.group({
-      person: this.fb.array([])
+      person: this.fb.array([]) // Empty array to hold multiple persons
     });
     this.addMember();
+
+    // Initialize form for self-registration
+    this.selfRegistrationForm = this.fb.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]]
+    });
   }
 
+  // Methods for registering someone else
   get membersList(): FormArray {
     return this.registerSomeoneElseForm.get('person') as FormArray;
   }
@@ -40,6 +50,26 @@ export class PurchaseTrainingComponent implements OnInit {
     }
   }
 
+  // Method to log multiple users
+  registerUsers(): void {
+    if (this.registerSomeoneElseForm.valid) {
+      const formData = this.registerSomeoneElseForm.value.person;
+      console.log('Registered Users:', formData); // Logs multiple users
+    } else {
+      console.log('Form is invalid');
+    }
+  }
+
+  // Method to log single user for self-registration
+  registerMyself(): void {
+    if (this.selfRegistrationForm.valid) {
+      const formData = this.selfRegistrationForm.value;
+      console.log('Self Registration:', formData); // Logs self-registration data
+    } else {
+      console.log('Self Registration Form is invalid');
+    }
+  }
+
   reload(): void {
     window.location.reload();
   }
@@ -48,16 +78,6 @@ export class PurchaseTrainingComponent implements OnInit {
   set json(input: string) {
     if (input) {
       this.data = JSON.parse(input);
-    }
-  }
-
-  // Capture form values and log them when Register button is clicked
-  registerUsers(): void {
-    if (this.registerSomeoneElseForm.valid) {
-      const formData = this.registerSomeoneElseForm.value.person;
-      console.log('Registered Users:', formData); // Logs multiple users
-    } else {
-      console.log('Form is invalid');
     }
   }
 }
