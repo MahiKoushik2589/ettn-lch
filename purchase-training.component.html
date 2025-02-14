@@ -72,15 +72,16 @@
                 </div>
                 <div class="modal-body">
                     <p>{{data.i18n.pleaseConfirmYourDetailsBelow}}</p>
-                    <p><b>{{data.i18n.firstNameInputLabel}}: </b>Anika</p>
-                    <p><b>{{data.i18n.lastNameInputLabel}}: </b>Rosser</p>
-                    <p><b>{{data.i18n.emailAddress}}: </b>anika.rosser@email.com</p>
+                    <p><b>{{data.i18n.firstNameInputLabel}}: </b>Anika-{{data.loggedInUserFirstName}}</p>
+                    <p><b>{{data.i18n.lastNameInputLabel}}: </b>Rosser-{{data.loggedInUserLastName}}</p>
+                    <p><b>{{data.i18n.emailAddress}}: </b>anika.rosser@email.com-{{data.loggedInUserEmail}}</p>
                 </div>
                 <div class="modal-footer">
                     <div class="row">
                         <div class="col-md-6">
                             <button type="button" data-toggle="modal" data-target="#registration-success-modal"
-                                class=" b-button b-button__tertiary b-button__tertiary--light color-change-blue">
+                                class=" b-button b-button__tertiary b-button__tertiary--light color-change-blue"
+                                (click)="openModal(data.loggedInUserFirstName,data.loggedInUserLastName,data.loggedInUserEmail,1)">
                                 {{data.i18n.register}}
                             </button>
                         </div>
@@ -104,32 +105,32 @@
                             data-dismiss="modal">✕</button></p>
                     <hr>
                 </div>
-                <div class="modal-body">
-                    <p>{{data.i18n.pleaseConfirmYourDetailsBelow}}</p>
-                    <form #selfRegistrationForm="ngForm">
+                <form [formGroup]="selfRegistrationForm" (ngSubmit)="registerMyself()">
+                    <div class="modal-body">
+                        <p>{{data.i18n.pleaseConfirmYourDetailsBelow}}</p>
                         <p>
                             <label for="firstname">{{data.i18n.firstNameInputLabel}}*</label>
-                            <input class="self-input" type="text" name="firstname" required ngModel>
+                            <input class="self-input" type="text" name="firstname" formControlName='firstName' required>
                         </p>
                         <p>
                             <label for="lastname">{{data.i18n.lastNameInputLabel}}*</label>
-                            <input class="self-input" type="text" name="lastname" required ngModel>
+                            <input class="self-input" type="text" name="lastname" formControlName='lastName' required>
                         </p>
                         <p>
                             <label for="email">{{data.i18n.emailAddress}}*</label>
-                            <input class="self-input" type="text" name="email" required ngModel>
+                            <input class="self-input" type="text" name="email" formControlName='email' required>
                         </p>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <div class="row">
-                        <button [disabled]="!selfRegistrationForm.valid" type="submit" data-toggle="modal"
-                            data-target="#registration-success-modal"
-                            class=" b-button b-button__tertiary b-button__tertiary--light color-change-blue">
-                            {{data.i18n.register}}
-                        </button>
                     </div>
-                </div>
+                    <div class="modal-footer">
+                        <div class="row">
+                            <button [disabled]="!selfRegistrationForm.valid" type="submit" data-toggle="modal"
+                                data-target="#registration-success-modal"
+                                class=" b-button b-button__tertiary b-button__tertiary--light color-change-blue">
+                                {{data.i18n.register}}
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -142,7 +143,7 @@
                             data-dismiss="modal">✕</button></p>
                     <hr>
                 </div>
-                <form [formGroup]="registerSomeoneElseForm">
+                <form [formGroup]="registerSomeoneElseForm" (ngSubmit)="registerUsers()">
                     <div class="modal-body">
                         <div formArrayName='person'>
                             <div class="row" *ngFor="let member of membersList.controls; let i=index; let first=first"
@@ -193,7 +194,7 @@
         </div>
     </div>
     <!-- Registration Success Modal -->
-    <div id="registration-success-modal" class="registration-success-modal modal fade" tabindex="-1" role="dialog">
+    <!--<div id="registration-success-modal" class="registration-success-modal modal fade" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content text-left">
                 <div class="modal-header">
@@ -216,5 +217,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>-->
 </div>
