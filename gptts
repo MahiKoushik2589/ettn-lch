@@ -1,9 +1,9 @@
   registerMyself() {
     if (this.data) {
       console.log("Registering User:");
-      console.log("First Name:", this.data.firstName || 'N/A');
-      console.log("Last Name:", this.data.lastName || 'N/A');
-      console.log("Email:", this.data.email || 'N/A');
+      console.log("First Name:", this.data.loggedInUserFirstName || 'N/A');
+      console.log("Last Name:", this.data.loggedInUserLastName || 'N/A');
+      console.log("Email:", this.data.loggedInUserEmail || 'N/A');
     } else {
       console.log("No user data available.");
     }
