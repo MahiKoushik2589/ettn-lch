@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+declare var $: any; // Ensure jQuery is available for modal handling
 
 @Component({
   selector: 'app-purchase-training',
@@ -9,19 +11,11 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class PurchaseTrainingComponent implements OnInit {
   data: any;
   showRegisterOptions = false;
-  registerSomeoneElseForm: FormGroup;
-  selfRegistrationForm: FormGroup; // New form for self-registration
+  selfRegistrationForm: FormGroup;
 
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    // Initialize form for registering someone else
-    this.registerSomeoneElseForm = this.fb.group({
-      person: this.fb.array([]) // Empty array to hold multiple persons
-    });
-    this.addMember();
-
-    // Initialize form for self-registration
     this.selfRegistrationForm = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -29,49 +23,22 @@ export class PurchaseTrainingComponent implements OnInit {
     });
   }
 
-  // Methods for registering someone else
-  get membersList(): FormArray {
-    return this.registerSomeoneElseForm.get('person') as FormArray;
+  toggleRegisterOptions(): void {
+    this.showRegisterOptions = !this.showRegisterOptions;
   }
 
-  addMember(): void {
-    const member = this.fb.group({
-      firstName: ['', Validators.required],
-      lasttName: ['', Validators.required],
-      memberEmailId: ['', [Validators.required, Validators.email]]
-    });
-
-    this.membersList.push(member);
+  openRegisterMyselfModal(): void {
+    $('#confirm-registration-modal').modal('show');
   }
 
-  deleteMember(i: number): void {
-    if (this.membersList.length > 1) {
-      this.membersList.removeAt(i);
-    }
-  }
-
-  // Method to log multiple users
-  registerUsers(): void {
-    if (this.registerSomeoneElseForm.valid) {
-      const formData = this.registerSomeoneElseForm.value.person;
-      console.log('Registered Users:', formData); // Logs multiple users
-    } else {
-      console.log('Form is invalid');
-    }
-  }
-
-  // Method to log single user for self-registration
   registerMyself(): void {
     if (this.selfRegistrationForm.valid) {
       const formData = this.selfRegistrationForm.value;
-      console.log('Self Registration:', formData); // Logs self-registration data
+      console.log('Self Registration:', formData);
+      $('#confirm-registration-modal').modal('hide');
     } else {
       console.log('Self Registration Form is invalid');
     }
-  }
-
-  reload(): void {
-    window.location.reload();
   }
 
   @Input()
