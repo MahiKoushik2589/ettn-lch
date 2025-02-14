@@ -20,3 +20,13 @@ registerEditedDetails() {
     console.log("Last Name:", this.editLastName);
     console.log("Email:", this.editEmail);
   }
+
+ registerSomeoneElse() {
+    console.log("Registering the following users:");
+    this.membersList.controls.forEach((member, index) => {
+      console.log(`User ${index + 1}:`);
+      console.log("First Name:", member.get('firstName')?.value);
+      console.log("Last Name:", member.get('lasttName')?.value);
+      console.log("Email:", member.get('memberEmailId')?.value);
+    });
+  }
