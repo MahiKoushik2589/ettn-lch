@@ -30,3 +30,45 @@ registerEditedDetails() {
       console.log("Email:", member.get('memberEmailId')?.value);
     });
   }
+------------------------
+ // Variables for dropdown selections
+  selectedLocation: string;
+  selectedDateTime: string;
+
+
+// Register Myself
+  registerMyself() {
+    if (this.data) {
+      console.log("Registering User:");
+      console.log("First Name:", this.data.loggedInUserFirstName || 'N/A');
+      console.log("Last Name:", this.data.loggedInUserLastName || 'N/A');
+      console.log("Email:", this.data.loggedInUserEmail || 'N/A');
+      console.log("Selected Location:", this.selectedLocation || 'Not selected');
+      console.log("Selected Date-Time:", this.selectedDateTime || 'Not selected');
+    } else {
+      console.log("No user data available.");
+    }
+  }
+
+  // Register Myself (Edited)
+  registerEditedDetails() {
+    console.log("Updated Registration Details:");
+    console.log("First Name:", this.data.loggedInUserFirstName);
+    console.log("Last Name:", this.data.loggedInUserLastName);
+    console.log("Email:", this.data.loggedInUserEmail);
+    console.log("Selected Location:", this.selectedLocation || 'Not selected');
+    console.log("Selected Date-Time:", this.selectedDateTime || 'Not selected');
+  }
+
+  // Register Someone Else
+  registerSomeoneElse() {
+    console.log("Registering the following users:");
+    this.membersList.controls.forEach((member, index) => {
+      console.log(`User ${index + 1}:`);
+      console.log("First Name:", member.get('firstName')?.value);
+      console.log("Last Name:", member.get('lasttName')?.value);
+      console.log("Email:", member.get('memberEmailId')?.value);
+    });
+    console.log("Selected Location:", this.selectedLocation || 'Not selected');
+    console.log("Selected Date-Time:", this.selectedDateTime || 'Not selected');
+  }
