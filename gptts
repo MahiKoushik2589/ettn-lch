@@ -8,3 +8,15 @@ registerMyself() {
       console.log('No user data available.');
     }
   }
+
+// Variables for editing user details
+  editFirstName: string = '';
+  editLastName: string = '';
+  editEmail: string = '';
+
+registerEditedDetails() {
+    console.log("Updated Registration Details:");
+    console.log("First Name:", this.editFirstName);
+    console.log("Last Name:", this.editLastName);
+    console.log("Email:", this.editEmail);
+  }
